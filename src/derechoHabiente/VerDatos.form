@@ -95,26 +95,30 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cajaID" max="32767" attributes="0"/>
+                              <Component id="cajaCurp" max="32767" attributes="0"/>
                               <Component id="cajaNombre" pref="265" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="45" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnActualizarDatos" pref="296" max="32767" attributes="0"/>
+                          <Component id="btnListo" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="cajaTelefono" max="32767" attributes="0"/>
-                              <Component id="cajaDireccion" min="-2" pref="192" max="-2" attributes="0"/>
+                              <Component id="cajaDireccion" pref="192" max="32767" attributes="0"/>
+                              <Component id="cajaCorreo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btnActualizarDatos" max="32767" attributes="0"/>
-                      <Component id="btnListo" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
               </Group>
@@ -124,41 +128,60 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="txtId" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cajaID" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="txtId" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="cajaCurp" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cajaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cajaDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtAppa" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cajaAppa" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cajaTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtApma" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cajaApma" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtApma" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cajaApma" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cajaDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="cajaTelefono" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="cajaCorreo" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="btnActualizarDatos" min="-2" pref="68" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtEdad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cajaDia" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -168,10 +191,6 @@
                               <Component id="txtEdad1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cajaMes" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="btnActualizarDatos" min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -188,7 +207,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="txtId">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID: "/>
+            <Property name="text" type="java.lang.String" value="Curp"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtNombre">
@@ -263,7 +282,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="cajaID">
+        <Component class="javax.swing.JTextField" name="cajaCurp">
+        </Component>
+        <Component class="javax.swing.JTextField" name="cajaCorreo">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Correo"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

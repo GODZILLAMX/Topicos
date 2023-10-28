@@ -36,7 +36,7 @@ public class VerDatos extends javax.swing.JInternalFrame {
         ResultSet rs;
         int idc;
 
-                cajaID.setEnabled(false);
+                cajaCurp.setEnabled(false);
 
         cajaNombre.setEnabled(false);
         cajaAppa.setEnabled(false);
@@ -46,6 +46,9 @@ public class VerDatos extends javax.swing.JInternalFrame {
         cajaAño.setEnabled(false);
         cajaDireccion.setEnabled(false);
         cajaTelefono.setEnabled(false);
+        cajaCorreo.setEnabled(false);
+//                txtPrueba.setEnabled(false);
+
 //        cajaNombre.setEnabled(false);
         btnListo.setVisible(false);
 
@@ -84,7 +87,9 @@ public class VerDatos extends javax.swing.JInternalFrame {
         cajaAño = new javax.swing.JTextField();
         btnActualizarDatos = new javax.swing.JButton();
         btnListo = new javax.swing.JButton();
-        cajaID = new javax.swing.JTextField();
+        cajaCurp = new javax.swing.JTextField();
+        cajaCorreo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -94,7 +99,7 @@ public class VerDatos extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtId.setText("ID: ");
+        txtId.setText("Curp");
 
         txtNombre.setText("Nombre: ");
 
@@ -125,6 +130,8 @@ public class VerDatos extends javax.swing.JInternalFrame {
                 btnListoActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Correo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,20 +167,23 @@ public class VerDatos extends javax.swing.JInternalFrame {
                             .addComponent(txtId))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cajaID)
+                            .addComponent(cajaCurp)
                             .addComponent(cajaNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnActualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                        .addComponent(btnListo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDireccion)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel1))
                         .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cajaTelefono)
-                            .addComponent(cajaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnActualizarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnListo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cajaDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                            .addComponent(cajaCorreo))))
                 .addGap(169, 169, 169))
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,42 +191,52 @@ public class VerDatos extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(txtId))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cajaID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(txtId))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(cajaCurp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre)
-                            .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDireccion))
+                            .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtAppa)
-                            .addComponent(cajaAppa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApma)
-                    .addComponent(cajaApma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(cajaAppa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtApma)
+                            .addComponent(cajaApma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cajaDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDireccion))
+                                .addGap(18, 18, 18)
+                                .addComponent(cajaTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cajaCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnActualizarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEdad)
                             .addComponent(cajaDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEdad1)
-                            .addComponent(cajaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(btnActualizarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cajaMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEdad2)
@@ -249,6 +269,8 @@ public class VerDatos extends javax.swing.JInternalFrame {
 
         cajaDireccion.setEnabled(true);
         cajaTelefono.setEnabled(true);
+        cajaCorreo.setEnabled(true);
+
         btnListo.setVisible(true);
         btnActualizarDatos.setEnabled(false);
 
@@ -258,6 +280,7 @@ public class VerDatos extends javax.swing.JInternalFrame {
     private void btnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListoActionPerformed
 
      
+                cajaCorreo.setEnabled(false);
 
         cajaDireccion.setEnabled(false);
         cajaTelefono.setEnabled(false);
@@ -275,12 +298,14 @@ public class VerDatos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cajaApma;
     private javax.swing.JTextField cajaAppa;
     private javax.swing.JTextField cajaAño;
+    private javax.swing.JTextField cajaCorreo;
+    private javax.swing.JTextField cajaCurp;
     private javax.swing.JTextField cajaDia;
     private javax.swing.JTextField cajaDireccion;
-    private javax.swing.JTextField cajaID;
     private javax.swing.JTextField cajaMes;
     private javax.swing.JTextField cajaNombre;
     private javax.swing.JTextField cajaTelefono;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txtApma;
@@ -307,15 +332,16 @@ public class VerDatos extends javax.swing.JInternalFrame {
         rs = stmt.executeQuery(sql);
 
         if (rs.next()) {
+            cajaCurp.setText(rs.getString("curp"));
             cajaNombre.setText(rs.getString("nombre"));
             cajaAppa.setText(rs.getString("appa"));
             cajaApma.setText(rs.getString("apma"));
             cajaDia.setText(String.valueOf(rs.getInt("dia")));
             cajaMes.setText(String.valueOf(rs.getInt("mes")));
-            cajaAño.setText(String.valueOf(rs.getInt("año")));
-
+                cajaAño.setText(String.valueOf(rs.getInt("año")));
             cajaDireccion.setText(rs.getString("direccion"));
             cajaTelefono.setText(rs.getString("telefono"));
+            cajaCorreo.setText(rs.getString("correo"));
         } else {
             JOptionPane.showMessageDialog(this, "El derechohabiente no fue encontrado");
         }
@@ -327,6 +353,39 @@ public class VerDatos extends javax.swing.JInternalFrame {
         e.printStackTrace();
     }
 }
+   
+   public void cargarDatosModerador(String curpModerador) {
+    Conexion con = new Conexion();
+    Connection conn;
+    Statement stmt;
+    ResultSet rs;
 
+    try {
+        conn = con.getConnection();
+        String sql = "SELECT * FROM moderadores WHERE curp = '" + curpModerador + "'";
+        stmt = conn.createStatement();
+        rs = stmt.executeQuery(sql);
 
+        if (rs.next()) {
+            cajaCurp.setText(rs.getString("curp"));
+            cajaNombre.setText(rs.getString("nombre"));
+            cajaAppa.setText(rs.getString("appa"));
+            cajaApma.setText(rs.getString("apma"));
+            cajaDia.setText(String.valueOf(rs.getInt("dia")));
+            cajaMes.setText(String.valueOf(rs.getInt("mes")));
+                cajaAño.setText(String.valueOf(rs.getInt("año")));
+            cajaDireccion.setText(rs.getString("direccion"));
+            cajaTelefono.setText(rs.getString("telefono"));
+            cajaCorreo.setText(rs.getString("correo"));
+        } else {
+            JOptionPane.showMessageDialog(this, "El moderador no fue encontrado");
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 }

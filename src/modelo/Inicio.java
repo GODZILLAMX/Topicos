@@ -6,6 +6,7 @@ package modelo;
 
 import conexion.Conexion;
 import derechoHabiente.DerechoHabiente;
+import derechoHabiente.Moderador;
 //import derechoHabiente.VerDatos;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -155,43 +156,64 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         Conexion con2 = new Conexion();
-    Connection conect2;
-    Statement st2;
-    String sql2;
+        Connection conect2;
+        Statement st2;
+        String sql2;
 
-    try {
-        conect2 = con2.getConnection();
+        try {
+    conect2 = con2.getConnection();
 
-        int varId = Integer.parseInt(txtId.getText());
-        String varContraseña = txtContraseña.getText();
+    String varCurp = txtId.getText();
+    String varContraseña = txtContraseña.getText();
 
-        sql2 = "select idDH, contraseña from derechohabiente where idDH = " + varId;
-        st2 = conect2.createStatement();
-        ResultSet resultado = st2.executeQuery(sql2);
+    sql2 = "select curp, contraseña from moderadores where curp = '" + varCurp + "'";
+    st2 = conect2.createStatement();
+    ResultSet resultado = st2.executeQuery(sql2);
+
+    if (resultado.next()) {
+        String curpFromDB = resultado.getString("curp");
+        String contraseñaFromDB = resultado.getString("contraseña");
+
+        if (varContraseña.equals(contraseñaFromDB)) {
+            JOptionPane.showMessageDialog(null, "Acceso concedido como Moderador");
+
+            Moderador dh = new Moderador();
+            dh.setCurpModerador(varCurp); 
+
+            dh.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "La contraseña es inválida para Moderador");
+        }
+    } else {
+        sql2 = "select curp, contraseña from derechohabiente where curp = '" + varCurp + "'";
+        resultado = st2.executeQuery(sql2);
 
         if (resultado.next()) {
-            int idFromDB = resultado.getInt("idDH");
+            String curpFromDB = resultado.getString("curp");
             String contraseñaFromDB = resultado.getString("contraseña");
 
-            if (varId == idFromDB && varContraseña.equals(contraseñaFromDB)) {
-                JOptionPane.showMessageDialog(null, "Acceso concedido");
+            if (varContraseña.equals(contraseñaFromDB)) {
+                JOptionPane.showMessageDialog(null, "Acceso concedido como Derechohabiente");
 
                 DerechoHabiente dh = new DerechoHabiente();
-                dh.setIdDerechohabiente(varId); 
+                dh.setCurpDerechohabiente(varCurp);
 
-                dh.setVisible(true); 
-                this.setVisible(false); 
+                dh.setVisible(true);
+                this.setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(null, "La contraseña es inválida");
+                JOptionPane.showMessageDialog(null, "La contraseña es inválida para Derechohabiente");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "El ID no fue encontrado");
+            JOptionPane.showMessageDialog(null, "El CURP no fue encontrado en ninguna tabla");
         }
-
-        resultado.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
+
+    resultado.close();
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 

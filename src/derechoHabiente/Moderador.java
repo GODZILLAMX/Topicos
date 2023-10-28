@@ -10,22 +10,22 @@ import modelo.Bienvenida;
 /**
  *
  */
-public class DerechoHabiente extends javax.swing.JFrame {
+public class Moderador extends javax.swing.JFrame {
 
 
     /**
      * Creates new form DerechoHabiente
      */
-        private String curpDerechohabiente;
+        private String curpModerador;
 
-    public DerechoHabiente() {
+    public Moderador() {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }
 
-    public void setCurpDerechohabiente(String curpDerechohabiente) {
-        this.curpDerechohabiente = curpDerechohabiente;
+  public void setCurpModerador(String curpModerador) {
+        this.curpModerador = curpModerador;
     }
 
     /**
@@ -109,7 +109,7 @@ public class DerechoHabiente extends javax.swing.JFrame {
     private void btnMirarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMirarDatosActionPerformed
     
        VerDatos verDatos = new VerDatos();
-        verDatos.cargarDatosDerechohabiente(curpDerechohabiente);
+        verDatos.cargarDatosModerador(curpModerador);
         escritorio.add(verDatos);
         verDatos.setVisible(true);
     
@@ -146,20 +146,23 @@ System.exit(0);
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DerechoHabiente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moderador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DerechoHabiente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moderador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DerechoHabiente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moderador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DerechoHabiente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moderador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DerechoHabiente().setVisible(true);
+                new Moderador().setVisible(true);
             }
         });
     }
