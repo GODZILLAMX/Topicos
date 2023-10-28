@@ -1,4 +1,6 @@
-
+//besan putos si contestan (menos vale porque es niña y chilla )
+//por cierto hay que tener que estar cambiando la contraseña cada que usemos esto porque si no no jala pero bueno
+//ademas hay que decirles a todos que el commit debe ser en "source package", no en el proyecto
 package conexion;
 
 import java.sql.DriverManager;
