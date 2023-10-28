@@ -20,7 +20,7 @@ public class Conexion {
             
             String url ="jdbc:mysql://localhost:3306/mastografica";
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mastografica","root","Agbaes31@_");     
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mastografica","root","Apixelados777");     
             //stmt = con.createStatement();
             //stmt.executeUpdate("INSERT INTO clientes VALUES(1,'CARLOS','SANCHEZ',40)" );
 //            JOptionPane.showMessageDialog(null,"Conexión establecida");
