@@ -319,83 +319,89 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-       Conexion con2 = new Conexion();
-Connection conect2;
-Statement st2;
-String sql2;
+        Conexion con2 = new Conexion();
+        Connection conect2;
+        Statement st2;
+        String sql2;
 
-String varNombre = txtNombre.getText();
-String varAppa = txtAppa.getText();
-String varApma = txtApma.getText();
-String varDiaText = cbDias.getSelectedItem() != null ? cbDias.getSelectedItem().toString() : "";
-String varMesText = cbMes.getSelectedItem() != null ? cbMes.getSelectedItem().toString() : "";
-String varAñoText = cbAño.getSelectedItem() != null ? cbAño.getSelectedItem().toString() : "";
-String varDireccion = txtDireccion.getText();
-String varContraseña = txtContraseña.getText();
-String varTelefonoText = txtTelefono.getText();
-String varCurp = txtCurp.getText();
-String varCorreo = txtCorreo.getText();
+        String varNombre = txtNombre.getText();
+        String varAppa = txtAppa.getText();
+        String varApma = txtApma.getText();
+        String varDiaText = cbDias.getSelectedItem() != null ? cbDias.getSelectedItem().toString() : "";
+        String varMesText = cbMes.getSelectedItem() != null ? cbMes.getSelectedItem().toString() : "";
+        String varAñoText = cbAño.getSelectedItem() != null ? cbAño.getSelectedItem().toString() : "";
+        String varDireccion = txtDireccion.getText();
+        String varContraseña = txtContraseña.getText();
+        String varTelefonoText = txtTelefono.getText();
+        String varCurp = txtCurp.getText();
+        String varCorreo = txtCorreo.getText();
 
-if (varNombre.isEmpty() || varAppa.isEmpty() || varApma.isEmpty() || varDireccion.isEmpty() || varContraseña.isEmpty() || varTelefonoText.isEmpty()) {
-    JOptionPane.showMessageDialog(null, "Aún hay espacios vacíos");
-} else {
-    int varDia, varMes, varAño;
-    long varTelefono; 
-
-    if (!varDiaText.matches("\\d+") || !varMesText.matches("\\d+") || !varAñoText.matches("\\d+")) {
-        JOptionPane.showMessageDialog(null, "Los campos de fecha deben contener números válidos.");
-    } else {
-        varDia = Integer.parseInt(varDiaText);
-        varMes = Integer.parseInt(varMesText);
-        varAño = Integer.parseInt(varAñoText);
-
-        if (!varTelefonoText.matches("\\d{10}")) {
-            JOptionPane.showMessageDialog(null, "El campo de teléfono debe contener 10 dígitos numéricos.");
+        if (varNombre.isEmpty() || varAppa.isEmpty() || varApma.isEmpty() || varDireccion.isEmpty() || varContraseña.isEmpty() || varTelefonoText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Aún hay espacios vacíos");
         } else {
-            varTelefono = Long.parseLong(varTelefonoText);
+            int varDia, varMes, varAño;
+            long varTelefono;
 
-            try {
-                conect2 = con2.getConnection();
+            if (!varDiaText.matches("\\d+") || !varMesText.matches("\\d+") || !varAñoText.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Los campos de fecha deben contener números válidos.");
+            } else {
+                varDia = Integer.parseInt(varDiaText);
+                varMes = Integer.parseInt(varMesText);
+                varAño = Integer.parseInt(varAñoText);
 
-                String checkCurpQuery = "SELECT COUNT(*) AS count FROM derechohabiente WHERE curp='" + varCurp + "'";
-                st2 = conect2.createStatement();
-                ResultSet countResult = st2.executeQuery(checkCurpQuery);
-
-                if (countResult.next() && countResult.getInt("count") > 0) {
-                    JOptionPane.showMessageDialog(null, "El CURP ya existe en la base de datos. Intente con un CURP diferente.");
+                if (!varTelefonoText.matches("\\d{10}")) {
+                    JOptionPane.showMessageDialog(null, "El campo de teléfono debe contener 10 dígitos numéricos.");
                 } else {
-                    sql2 = "INSERT INTO derechohabiente (curp, nombre, apma, appa, dia, mes, año, direccion, telefono, correo, contraseña) VALUES ('" + varCurp + "', '" + varNombre + "','" + varApma + "','" + varAppa + "'," + varDia + "," + varMes + "," + varAño + ",'" + varDireccion + "','" + varTelefono + "','" + varCorreo + "','" + varContraseña + "')";
+                    varTelefono = Long.parseLong(varTelefonoText);
 
-                    st2 = conect2.createStatement();
-                    st2.executeUpdate(sql2);
+                    try {
+                        conect2 = con2.getConnection();
 
-                    String selectQuery = "SELECT curp FROM derechohabiente WHERE curp='" + varCurp + "'";
-                    ResultSet resultSet = st2.executeQuery(selectQuery);
+                        String checkCurpInModeradoresQuery = "SELECT COUNT(*) AS count FROM moderadores WHERE curp='" + varCurp + "'";
+                        st2 = conect2.createStatement();
+                        ResultSet countResult = st2.executeQuery(checkCurpInModeradoresQuery);
 
-                    if (resultSet.next()) {
-                        JOptionPane.showMessageDialog(null, "Revise sus datos para saber su Id");
+                        if (countResult.next() && countResult.getInt("count") > 0) {
+                            JOptionPane.showMessageDialog(null, "El CURP ya existe en la tabla de Moderadores. Intente con un CURP diferente.");
+                        } else {
+                            String checkCurpInDerechohabienteQuery = "SELECT COUNT(*) AS count FROM derechohabiente WHERE curp='" + varCurp + "'";
+                            ResultSet countResultDerechohabiente = st2.executeQuery(checkCurpInDerechohabienteQuery);
 
-                        String idFromDB = resultSet.getString("curp");
-                        resultSet.close();
+                            if (countResultDerechohabiente.next() && countResultDerechohabiente.getInt("count") > 0) {
+                                JOptionPane.showMessageDialog(null, "El CURP ya existe en la tabla de Derechohabiente. Intente con un CURP diferente.");
+                            } else {
+                                sql2 = "INSERT INTO derechohabiente (curp, nombre, apma, appa, dia, mes, año, direccion, telefono, correo, contraseña) VALUES ('" + varCurp + "', '" + varNombre + "','" + varApma + "','" + varAppa + "'," + varDia + "," + varMes + "," + varAño + ",'" + varDireccion + "','" + varTelefono + "','" + varCorreo + "','" + varContraseña + "')";
 
-                        DerechoHabiente dh = new DerechoHabiente();
-                        dh.setCurpDerechohabiente(idFromDB);
+                                st2 = conect2.createStatement();
+                                st2.executeUpdate(sql2);
 
-                        dh.setVisible(true);
-                        this.setVisible(false);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo encontrar el derechohabiente");
+                                String selectQuery = "SELECT curp FROM derechohabiente WHERE curp='" + varCurp + "'";
+                                ResultSet resultSet = st2.executeQuery(selectQuery);
+
+                                if (resultSet.next()) {
+                                    JOptionPane.showMessageDialog(null, "Revise sus datos para saber su Id");
+
+                                    String idFromDB = resultSet.getString("curp");
+                                    resultSet.close();
+
+                                    DerechoHabiente dh = new DerechoHabiente();
+                                    dh.setCurpDerechohabiente(idFromDB);
+
+                                    dh.setVisible(true);
+                                    this.setVisible(false);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No se pudo encontrar el derechohabiente");
+                                }
+                            }
+                        }
+
+                        conect2.close();
+                    } catch (SQLException e) {
+                        System.err.println("Error: " + e.getMessage());
                     }
                 }
-
-                conect2.close();
-            } catch (SQLException e) {
-                System.err.println("Error: " + e.getMessage());
             }
         }
-    }
-}
-
 
 
     }//GEN-LAST:event_btnAceptarActionPerformed
