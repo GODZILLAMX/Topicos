@@ -7,12 +7,15 @@ package modelo;
 import conexion.Conexion;
 import derechoHabiente.DerechoHabiente;
 import derechoHabiente.Moderador;
+import java.io.UnsupportedEncodingException;
 //import derechoHabiente.VerDatos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +28,7 @@ public class Inicio extends javax.swing.JFrame {
     private int idDerechohabiente;
 
     Conexion con1 = new Conexion();
-    Connection conet;
+    Connection conect2;
     DefaultTableModel modelo;
     Statement st;
     ResultSet rs;
@@ -82,7 +85,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jLabel3.setText("\"INICIO DE SESION\"");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/salud.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/SALUD_HORIZONTAL.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,7 +112,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +168,11 @@ public class Inicio extends javax.swing.JFrame {
 
     String varCurp = txtId.getText();
     String varContraseña = txtContraseña.getText();
+    security res = new security();
+        String base64 = "";
+        base64 = res.encode(txtContraseña.getText());
+        System.out.println(base64+"\n");
+        System.out.println(res.decode(base64));
 
     sql2 = "select curp, contraseña from moderadores where curp = '" + varCurp + "'";
     st2 = conect2.createStatement();
@@ -193,7 +201,7 @@ public class Inicio extends javax.swing.JFrame {
             String curpFromDB = resultado.getString("curp");
             String contraseñaFromDB = resultado.getString("contraseña");
 
-            if (varContraseña.equals(contraseñaFromDB)) {
+            if (base64.equals(contraseñaFromDB)) {
                 JOptionPane.showMessageDialog(null, "Acceso concedido como Derechohabiente");
 
                 DerechoHabiente dh = new DerechoHabiente();
@@ -212,7 +220,9 @@ public class Inicio extends javax.swing.JFrame {
     resultado.close();
 } catch (SQLException e) {
     e.printStackTrace();
-}
+}       catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_btnAceptarActionPerformed

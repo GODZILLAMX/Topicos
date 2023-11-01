@@ -6,10 +6,13 @@ package modelo;
 
 import derechoHabiente.DerechoHabiente;
 import conexion.Conexion;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +26,7 @@ public class Registro extends javax.swing.JFrame {
     private int idDerechohabiente;
 
     Conexion con1 = new Conexion();
-    Connection conet;
+    Connection conect2;
     DefaultTableModel modelo;
     Statement st;
     ResultSet rs;
@@ -32,9 +35,10 @@ public class Registro extends javax.swing.JFrame {
     /**
      * Creates new form Registro
      */
-    public Registro() {
+    public Registro() throws UnsupportedEncodingException {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        
 
     }
 
@@ -143,7 +147,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jLabel10.setText("REGISTRO 2023");
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/salud.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/SALUD_HORIZONTAL.png"))); // NOI18N
 
         cbDias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dias:", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
@@ -332,6 +336,15 @@ public class Registro extends javax.swing.JFrame {
         String varAñoText = cbAño.getSelectedItem() != null ? cbAño.getSelectedItem().toString() : "";
         String varDireccion = txtDireccion.getText();
         String varContraseña = txtContraseña.getText();
+        security res = new security();
+        String base64 = "";
+        base64 = res.encode(txtContraseña.getText());
+        System.out.println(base64+"\n");
+        try {
+            System.out.println(res.decode(base64));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String varTelefonoText = txtTelefono.getText();
         String varCurp = txtCurp.getText();
         String varCorreo = txtCorreo.getText();
@@ -370,7 +383,7 @@ public class Registro extends javax.swing.JFrame {
                             if (countResultDerechohabiente.next() && countResultDerechohabiente.getInt("count") > 0) {
                                 JOptionPane.showMessageDialog(null, "El CURP ya existe en la tabla de Derechohabiente. Intente con un CURP diferente.");
                             } else {
-                                sql2 = "INSERT INTO derechohabiente (curp, nombre, apma, appa, dia, mes, año, direccion, telefono, correo, contraseña) VALUES ('" + varCurp + "', '" + varNombre + "','" + varApma + "','" + varAppa + "'," + varDia + "," + varMes + "," + varAño + ",'" + varDireccion + "','" + varTelefono + "','" + varCorreo + "','" + varContraseña + "')";
+                                sql2 = "INSERT INTO derechohabiente (curp, nombre, apma, appa, dia, mes, año, direccion, telefono, correo, contraseña) VALUES ('" + varCurp + "', '" + varNombre + "','" + varApma + "','" + varAppa + "'," + varDia + "," + varMes + "," + varAño + ",'" + varDireccion + "','" + varTelefono + "','" + varCorreo + "','" + base64 + "')";
 
                                 st2 = conect2.createStatement();
                                 st2.executeUpdate(sql2);
@@ -452,7 +465,11 @@ public class Registro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Registro().setVisible(true);
+                try {
+                    new Registro().setVisible(true);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
