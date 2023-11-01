@@ -143,7 +143,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jLabel10.setText("REGISTRO 2023");
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/SALUD_HORIZONTAL.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/salud.png"))); // NOI18N
 
         cbDias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dias:", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
